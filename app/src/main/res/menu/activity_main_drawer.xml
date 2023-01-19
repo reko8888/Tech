@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Administración">
+        <menu>
+            <item android:id="@+id/nav_item_main"
+                android:icon="@drawable/anuncios"
+                android:title="@string/titulomenuCartera" />
+
+            <item android:id="@+id/nav_item_calendario"
+                android:icon="@drawable/calendario"
+                android:title="@string/titulomenuCalendario" />
+
+            <item android:id="@+id/nav_item_votacion"
+                android:icon="@drawable/votacion"
+                android:title="@string/titulomenuJuntas" />
+        </menu>
+
+    </item>
+    <item android:title="Cuenta de usuario">
+        <menu>
+            <item android:id="@+id/nav_usuarioPreferencias"
+                android:title="@string/userPreferencias"
+                android:icon="@drawable/preferencias"/>
+            <item android:id="@+id/nav_usuario"
+                  android:title="@string/cerrarSesion"
+                  android:icon="@drawable/logout"/>
+        </menu>
+
+    </item>
+
+</menu>

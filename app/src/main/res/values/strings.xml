@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Tech</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="inicioSesion">Iniciar sesión</string>
+    <string name="olvidoPassword">¿Has olvidado la contraseña?</string>
+    <string name="terminosCondiciones">He leido y acepto los </string>
+    <string name="terminosCondicionesLink">términos y condiciones</string>
+    <string name="sesionGoogle">Iniciar sesión con Google</string>
+    <string name="logoDescripcion">Logo tech comunity</string>
+    <string name="titulomenuCartera">Tablón de anuncios</string>
+    <string name="titulomenuCalendario">Calendario de juntas </string>
+    <string name="titulomenuJuntas">Votación de las propuestas</string>
+    <string name="navUser">usuario</string>
+    <string name="cierre">cerrando menú</string>
+    <string name="apertura">Abriendo menu</string>
+    <string name="cerrarSesion">Cerrar sesión de usuario</string>
+    <string name="userPreferencias">Ajustes</string>
+    <string name="msjBienvenida">¡Bienvenido! </string>
+    <string name="proxEventos">Próximo evento</string>
+    <string name="msjErrorEnvío">Error no se ha enviado correctamente</string>
+    <string name="msjCorrectoEnvio">Se ha enviado correctamente</string>
+    <string name="contraseñaIncorrecta">Contraseña incorrecta</string>
+</resources>

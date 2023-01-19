@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/logoCabecera"
+        android:contentDescription="@string/logoDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:srcCompat="@drawable/logo"
+        tools:ignore="ImageContrastCheck" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        style="@style/viewLogin"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:padding="20dp"
+        android:layout_margin="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:backgroundTint="@color/black">
+    </EditText>
+    <EditText
+        android:id="@+id/editTextPassword"
+        style="@style/viewLogin"
+        android:hint="@string/password"
+        android:autofillHints="password"
+        android:inputType="textPassword"
+        android:padding="20dp"
+        android:layout_margin="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:backgroundTint="@color/black">
+    </EditText>
+    <Button
+
+        android:id="@+id/btnViewIniciarSesion"
+        style="@style/viewLogin"
+        android:backgroundTint="@color/greyApp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:text="@string/inicioSesion"
+        android:shadowColor="@color/white"
+        android:textAllCaps="false"
+        android:shadowRadius="@integer/material_motion_duration_long_2"
+        android:textAlignment="center">
+    </Button>
+    <TextView
+
+        android:id="@+id/textViewOlvidoContraseña"
+        style="@style/viewLogin"
+        android:paddingTop="0dp"
+        android:paddingBottom="7dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:text="@string/olvidoPassword"
+        android:textAlignment="center"
+        >
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/linearTerminos"
+        style="@style/viewLogin"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkboxTerminos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/greyApp"
+            android:text="@string/terminosCondiciones"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textViewTerminos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="@string/terminosCondicionesLink"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonGoogle"
+        style="@style/viewLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:backgroundTint="@color/greyApp"
+        android:drawableLeft="@drawable/googleicon"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:shadowColor="@color/black"
+        android:textAllCaps="false"
+        android:shadowRadius="@integer/material_motion_duration_long_2"
+        android:text="@string/sesionGoogle"
+        tools:ignore="TextContrastCheck">
+
+    </Button>
+
+
+</LinearLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/nav_cabecera"
+    android:orientation="vertical"
+    android:background="@color/blueApp"
+    >
+
+    <ImageView
+        android:id="@+id/imagenCabecera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/imcabecera" />
+
+     <TextView
+        android:id="@+id/nav_cabecera_bienvenido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+         android:text="@string/msjBienvenida">
+        </TextView>
+        <TextView
+            android:id="@+id/nav_cabecera_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/navUser"
+            android:padding="5dp">
+        </TextView>
+    <TextView
+        android:id="@+id/nav_cabecera_Notificaciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="60px"
+        android:text="@string/proxEventos"
+        android:padding="5dp">
+    </TextView>
+    <LinearLayout
+        android:id="@+id/nav_header_proximosEventos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+        <ImageView
+            android:id="@+id/imagenCabeceraEvento"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            app:srcCompat="@drawable/information"/>
+        <TextView
+            android:id="@+id/nav_cabecera_evento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+        </TextView>
+
+    </LinearLayout>
+</LinearLayout>
