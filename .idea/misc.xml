@@ -5,11 +5,15 @@
       <map>
         <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1355" />
         <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/drawable/googleicon.xml" value="0.1" />
+        <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.1" />
+        <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.1" />
+        <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.1" />
         <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1355" />
+        <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/drawable/redondeo.xml" value="0.1" />
         <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/layout/activity_main.xml" value="0.10515463917525773" />
         <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/layout/activity_prueba.xml" value="0.2" />
-        <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/layout/fragment_item.xml" value="0.13854166666666667" />
+        <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/layout/fragment_item.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/layout/fragment_item_list.xml" value="0.1859375" />
         <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/layout/nav_menu_cabecera.xml" value="0.1" />
         <entry key="..\:/Users/rekoe/AndroidStudioProjects/Tech2/app/src/main/res/menu/activity_main_drawer.xml" value="0.10416666666666667" />
@@ -22,5 +26,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.10515463917525773" />
+      </ProjectState>
+    </option>
   </component>
 </project>

@@ -23,4 +23,8 @@
     <string name="contraseñaIncorrecta">Contraseña incorrecta</string>
     <string name="tituloAdministracion">Administración</string>
     <string name="cuenta_de_usuario">Cuenta de usuario</string>
+    <string name="todo">TODO</string>
+    <string name="tituloCrear">Publicar anuncio</string>
+    <string name="labelTitulo">Escribe el título del anuncio</string>
+    <string name="labelDescripción">Escribe una descripción del anuncio</string>
 </resources>

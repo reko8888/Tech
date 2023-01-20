@@ -3,35 +3,32 @@ package com.example.tech;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 
-import org.checkerframework.checker.units.qual.A;
-
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,25 +37,42 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import io.grpc.InternalMetadata;
-
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerMenu;
     private NavigationView navView;
+    private LinearLayout lyVentanaCrear;
+    private ConstraintLayout constraintLayoutMain;
     private TextView textViewUsuarioCabe;
     public static List<Anuncio> listaAnuncios = new ArrayList<Anuncio>();
     private View cabeceraNav;
     private RecyclerView recyclerView;
     private MyItemRecyclerViewAdapter myItemRecyclerViewAdapter;
+    private com.google.android.material.floatingactionbutton.FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iniciarComponentes();
+        ocultarPoPup();
         myItemRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private void ocultarPoPup() {
+    lyVentanaCrear.setTranslationX(400f);
+    lyVentanaCrear.setVisibility(View.INVISIBLE);
+    }
+    public void mostrarCrear(){
+        constraintLayoutMain.setEnabled(false);
+        drawerMenu.setEnabled(false);
+        floatingActionButton.setEnabled(false);
+        lyVentanaCrear.setVisibility(View.VISIBLE);
+        ObjectAnimator.ofFloat(lyVentanaCrear,"translationX",0f)
+                .setDuration(300L)
+                .start();
+
     }
 
     @Override
@@ -118,6 +132,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void iniciarComponentes() {
+
+        constraintLayoutMain = findViewById(R.id.constraintMain);
         recyclerView = findViewById(R.id.myrecicler);
         myItemRecyclerViewAdapter = new MyItemRecyclerViewAdapter(listaAnuncios);
         iniciarNavigation();
@@ -127,11 +143,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(myItemRecyclerViewAdapter);
         cargarReciclerView();
-
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarCrear();
+            }
+        });
     }
 
     private void iniciarNavigation() {
-
+        lyVentanaCrear =findViewById(R.id.linearLayoutCrear);
         navView = findViewById(R.id.nav_view);
         navView.setNavigationItemSelectedListener(this);
         cabeceraNav = LayoutInflater.from(this).inflate(R.layout.nav_menu_cabecera,navView,false);

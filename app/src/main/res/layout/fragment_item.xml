@@ -5,6 +5,8 @@
     android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     app:cardCornerRadius="20dp"
+    app:cardElevation="8dp"
+    app:cardPreventCornerOverlap="false"
     android:outlineSpotShadowColor="@color/black"
     android:layout_height="wrap_content">
 
@@ -33,7 +35,8 @@
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
-
+            android:textSize="50px"
+            android:textStyle="bold"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,14 +45,12 @@
             android:id="@+id/textFecha"
             android:layout_width="101dp"
             android:layout_height="28dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="80dp"
             android:layout_marginBottom="36dp"
             android:text="TextView"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/botonEnviar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageButton
             android:id="@+id/botonEnviar"
@@ -58,12 +59,37 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="17dp"
+            android:src="@drawable/ic_baseline_send_24"
+            android:background="@drawable/redondeo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.616"
-            app:srcCompat="@android:drawable/ic_menu_send"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="52dp"
+            android:layout_height="79dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toTopOf="@+id/textDescripcion"
+            app:layout_constraintStart_toEndOf="@+id/textTitulo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/chincheta" />
+
+        <ImageButton
+            android:id="@+id/imagbtCerrarAnuncio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="42dp"
+            android:background="@color/greyApp"
+            app:layout_constraintBottom_toTopOf="@+id/botonEnviar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_delete_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,23 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/drawer_main" android:background="@color/white"
+    android:id="@+id/drawer_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity"
     tools:openDrawer="start">
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/tituloTablon"
+            android:layout_width="420dp"
+            android:layout_height="130dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/tablon" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myrecicler"
-            android:layout_width="match_parent"
-            android:layout_height="700dp"
+            android:layout_width="405dp"
+            android:layout_height="651dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintVertical_bias="0.925"
+            tools:ignore="MissingConstraints"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutCrear"
+            android:background="@color/greyApp"
+            android:layout_width="340dp"
+            android:visibility="visible"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical"
+            android:translationX="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btCerrarCrear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_close_24"
+                android:layout_gravity="right|top"
+                android:gravity="right|center_vertical"/>
+
+            <TextView
+                android:id="@+id/anuncioCrear"
+                android:text="@string/tituloCrear"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="40dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="@string/labelTitulo"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/etTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:padding="12dp"
+                android:backgroundTint="@color/blueBackgroundApp"
+                android:background="@color/blueBackgroundApp"
+                />
+            <TextView
+                android:id="@+id/tvdescripcion"
+                android:text="@string/labelDescripción"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/etDescipcion"
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:inputType="textMultiLine"
+                android:padding="12dp"
+                android:lines="8"
+                android:maxLines="10"
+                android:scrollbars="vertical"
+                android:layout_height="100dp"
+                android:background="@color/blueBackgroundApp"
+                android:backgroundTint="@color/blueBackgroundApp"
+                />
+            <LinearLayout
+                android:id="@+id/linearLayoutBotones"
+                android:orientation="horizontal"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+            <ImageButton
+                android:id="@+id/botonCrear"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_baseline_save_24"
+                android:background="@drawable/redondeo"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <ImageButton
+                android:id="@+id/botonEnviar"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_baseline_clear_all_24"
+                android:background="@drawable/redondeo"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="72dp"
+            android:backgroundTint="@color/purpleApp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.887"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_24"
+            android:contentDescription="@string/todo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
