@@ -30,7 +30,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.checkerframework.checker.units.qual.A;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,17 +50,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView textViewUsuarioCabe;
     public static List<Anuncio> listaAnuncios = new ArrayList<Anuncio>();
     private View cabeceraNav;
+    private RecyclerView recyclerView;
     private MyItemRecyclerViewAdapter myItemRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         iniciarComponentes();
-        montarComponentes();
-        cargarReciclerView();
-        myItemRecyclerViewAdapter = new MyItemRecyclerViewAdapter(listaAnuncios);
         myItemRecyclerViewAdapter.notifyDataSetChanged();
     }
 
@@ -75,19 +76,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void cargarReciclerView() {
         listaAnuncios.clear();
-        cargarDB();
-
-    }
-
-    private void montarComponentes() {
-
-
-
-    }
-
-    private void cargarDB() {
         cargarAnuncios();
+
     }
+
+
+
+
 
     private void cargarAnuncios() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -101,7 +96,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 String titulo = document.getString("titulo");
                                 String descripcion = document.getString("descripcion");
                                 Date fecha = Objects.requireNonNull(document.getTimestamp("fecha")).toDate();
-                                Anuncio anuncio = new Anuncio(descripcion, fecha,titulo );
+
+                                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                                String formattedDate = formatter.format(fecha);
+                                LocalDate localDate = LocalDate.parse(formattedDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+
+                                Anuncio anuncio = new Anuncio(descripcion,localDate ,titulo );
                                 listaAnuncios.add(anuncio);
                                     myItemRecyclerViewAdapter.notifyDataSetChanged();
                                 Log.d("dsd", document.getId() + " => " + document.getData()+ anuncio.getFecha().toString());
@@ -117,12 +118,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void iniciarComponentes() {
-
-        iniciarDrawer();
+        recyclerView = findViewById(R.id.myrecicler);
+        myItemRecyclerViewAdapter = new MyItemRecyclerViewAdapter(listaAnuncios);
         iniciarNavigation();
+        iniciarDrawer();
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(myItemRecyclerViewAdapter);
+        cargarReciclerView();
+
     }
 
     private void iniciarNavigation() {
+
         navView = findViewById(R.id.nav_view);
         navView.setNavigationItemSelectedListener(this);
         cabeceraNav = LayoutInflater.from(this).inflate(R.layout.nav_menu_cabecera,navView,false);

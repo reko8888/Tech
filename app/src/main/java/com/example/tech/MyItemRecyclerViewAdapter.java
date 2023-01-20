@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.example.tech.placeholder.PlaceholderContent.PlaceholderItem;
 import com.example.tech.databinding.FragmentItemBinding;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -38,7 +41,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mDescripcion.setText(mValues.get(position).getDescripcion());
-        holder.mFecha.setText(mValues.get(position).getFecha().toString());
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = mValues.get(position).getFecha().format(formateador);
+        holder.mFecha.setText(formattedDate);
         holder.mTitulo.setText(mValues.get(position).getTitulo());
 
         holder.mBtnImg.setOnClickListener(new View.OnClickListener() {

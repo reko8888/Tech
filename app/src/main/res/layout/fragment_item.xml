@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="134dp"
+        android:layout_height="196dp"
         android:layout_centerHorizontal="true"
         android:outlineSpotShadowColor="@color/black"
         android:paddingTop="25dp">
@@ -20,8 +20,8 @@
         <TextView
             android:id="@+id/textDescripcion"
             android:layout_width="218dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="176dp"
+            android:layout_height="85dp"
+            android:layout_marginEnd="148dp"
             android:layout_marginBottom="16dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,12 +29,12 @@
 
         <TextView
             android:id="@+id/textTitulo"
-            android:layout_width="206dp"
-            android:layout_height="26dp"
+            android:layout_width="153dp"
+            android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
-            android:text="TextView"
 
+            android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,25 +42,26 @@
             android:id="@+id/textFecha"
             android:layout_width="101dp"
             android:layout_height="28dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="36dp"
             android:text="TextView"
             app:layout_constraintBottom_toTopOf="@+id/botonEnviar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textTitulo" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageButton
             android:id="@+id/botonEnviar"
-            android:layout_width="64dp"
-            android:layout_height="52dp"
+            android:layout_width="76dp"
+            android:layout_height="66dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="17dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0.616"
             app:srcCompat="@android:drawable/ic_menu_send"
             tools:ignore="SpeakableTextPresentCheck" />
 

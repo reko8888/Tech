@@ -21,4 +21,6 @@
     <string name="msjErrorEnvío">Error no se ha enviado correctamente</string>
     <string name="msjCorrectoEnvio">Se ha enviado correctamente</string>
     <string name="contraseñaIncorrecta">Contraseña incorrecta</string>
+    <string name="tituloAdministracion">Administración</string>
+    <string name="cuenta_de_usuario">Cuenta de usuario</string>
 </resources>

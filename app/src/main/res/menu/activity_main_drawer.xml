@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Administración">
+    <item android:title="@string/tituloAdministracion">
         <menu>
             <item android:id="@+id/nav_item_main"
                 android:icon="@drawable/anuncios"
@@ -16,7 +16,7 @@
         </menu>
 
     </item>
-    <item android:title="Cuenta de usuario">
+    <item android:title="@string/cuenta_de_usuario">
         <menu>
             <item android:id="@+id/nav_usuarioPreferencias"
                 android:title="@string/userPreferencias"
