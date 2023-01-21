@@ -54,8 +54,8 @@
 
         <ImageButton
             android:id="@+id/botonEnviar"
-            android:layout_width="76dp"
-            android:layout_height="66dp"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="17dp"
@@ -85,7 +85,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="42dp"
-            android:background="@color/greyApp"
+            android:background="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/botonEnviar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

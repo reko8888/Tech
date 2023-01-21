@@ -12,13 +12,16 @@ public class Anuncio {
     private String titulo;
     private String descripcion;
     private LocalDate fecha;
+    private String emailAnuncio;
 
-    public Anuncio(String descripcion, LocalDate fecha,String titulo ) {
+    public Anuncio(String descripcion, LocalDate fecha,String titulo ,String emailAnuncio ) {
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.titulo = titulo;
-
+        this.emailAnuncio = emailAnuncio;
     }
+
+
 
     public Anuncio() {
     }
@@ -48,6 +51,14 @@ public class Anuncio {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
+    }
+
+    public String getEmailAnuncio() {
+        return emailAnuncio;
+    }
+
+    public void setEmailAnuncio(String emailAnuncio) {
+        this.emailAnuncio = emailAnuncio;
     }
 
 }

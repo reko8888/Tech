@@ -27,4 +27,10 @@
     <string name="tituloCrear">Publicar anuncio</string>
     <string name="labelTitulo">Escribe el título del anuncio</string>
     <string name="labelDescripción">Escribe una descripción del anuncio</string>
+    <string name="errorGuardar">Debe completar los campos</string>
+    <string name="anuncioGuardado">"Anuncio guardado correctamente"</string>
+    <string name="cancel">cancelar</string>
+    <string name="si">Si, borrar anuncio</string>
+    <string name="start">Si, borrar anuncio</string>
+    <string name="borrarAnuncio">¿Está seguro que desea borrarlo?</string>
 </resources>
