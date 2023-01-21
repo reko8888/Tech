@@ -33,4 +33,7 @@
     <string name="si">Si, borrar anuncio</string>
     <string name="start">Si, borrar anuncio</string>
     <string name="borrarAnuncio">¿Está seguro que desea borrarlo?</string>
+    <string name="menu_home">menu</string>
+    <string name="menu_gallery">galery</string>
+    <string name="menu_slideshow">slide</string>
 </resources>

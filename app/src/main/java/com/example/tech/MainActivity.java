@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.ObjectAnimator;
+
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +24,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tech.placeholder.TablonActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,8 +32,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -48,7 +53,7 @@ import java.util.Map;
 import java.util.Objects;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MyItemRecyclerViewAdapter.OnButtonClickListener {
     //Navegacion
     private DrawerLayout drawerMenu;
     private NavigationView navView;
@@ -69,13 +74,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageButton ibGuardar;
     private ImageButton ibLimpiar;
 
+    //dialogo
+    AlertDialog.Builder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         iniciarComponentes();
         ocultarPoPup();
-        myItemRecyclerViewAdapter.notifyDataSetChanged();
+
     }
 
     private void ocultarPoPup() {
@@ -99,19 +106,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onPause() {
         super.onPause();
-        listaAnuncios.clear();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
+        cargarReciclerView();
     }
 
     private void cargarReciclerView() {
+        LinearLayoutManager manager = new LinearLayoutManager(this);
         listaAnuncios.clear();
+        myItemRecyclerViewAdapter = new MyItemRecyclerViewAdapter(listaAnuncios);
+        myItemRecyclerViewAdapter.setOnButtonClickListener(this);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(myItemRecyclerViewAdapter);
         cargarAnuncios();
-
     }
 
 
@@ -168,14 +180,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //
         constraintLayoutMain = findViewById(R.id.constraintMain);
         recyclerView = findViewById(R.id.myrecicler);
-        myItemRecyclerViewAdapter = new MyItemRecyclerViewAdapter(listaAnuncios);
+
+
+
+        //capturo el evento
+
         iniciarNavigation();
         iniciarDrawer();
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(myItemRecyclerViewAdapter);
-        cargarReciclerView();
+
         floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,6 +215,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 guardarAnuncio();
             }
         });
+
+        builder = new AlertDialog.Builder(this);
     }
 
     private void guardarAnuncio() {
@@ -283,15 +297,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
     }
-  
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_usuario: cerrarSesion();
             break;
-            case R.id.nav_item_main:
-                restartActivity();
-                break;
+
+
         }
         drawerMenu.closeDrawer(GravityCompat.START);
         return true;
@@ -301,4 +314,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
+
+
+
+    @Override
+    public void onButtonClick(int position, String descripcion) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Creo la referencia de la coleccion que quiero borrar
+        CollectionReference collectionReference = db.collection("anuncios");
+
+        // Crear una consulta para tener el documento que cumpla con el criterio
+        Query query = collectionReference.whereEqualTo("descripcion", descripcion);
+
+        // Ejecuto la consulta
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+
+                        builder.setTitle("Borrar anuncio");
+                        builder.setMessage("¿Está seguro que quiere borrar el anuncio?");
+                        builder.setIcon(R.drawable.ic_baseline_delete_24);
+                        builder.setPositiveButton("No", (dialog, which) -> restartActivity());
+                        builder.setNegativeButton("Si", (dialog, which) -> {
+                            document.getReference().delete();
+                            restartActivity();
+                        });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+                    }
+                } else {
+                    Log.w("TAG", "Error al obtener documentos", task.getException());
+                }
+
+            }
+        });
+    }
+
+
 }
