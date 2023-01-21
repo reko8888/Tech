@@ -1,40 +1,20 @@
 package com.example.tech;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tech.placeholder.PlaceholderContent.PlaceholderItem;
 import com.example.tech.databinding.FragmentItemBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
@@ -50,6 +30,14 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         mValues = items;
     }
 
+    public interface OnButtonClickListener {
+        void onButtonClick(int position, String descripcion);
+    }
+    private OnButtonClickListener listener;
+
+    public void setOnButtonClickListener(OnButtonClickListener listener) {
+        this.listener = listener;
+    }
 
 
     @Override
@@ -68,7 +56,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         String formattedDate = mValues.get(position).getFecha().format(formateador);
         holder.mFecha.setText(formattedDate);
         holder.mTitulo.setText(mValues.get(position).getTitulo());
+
         String emailAnunciante = mValues.get(position).getEmailAnuncio();
+
 
         if(emailAnunciante != null && emailAnunciante.equals(LoginActivity.email)){
             holder.mBtnImgCerrar.setVisibility(View.VISIBLE);
@@ -76,42 +66,31 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         }else{
             holder.mBtnImgCerrar.setVisibility(View.INVISIBLE);
             holder.mBtnImgCerrar.setEnabled(false);
+
         }
        holder.mBtnImgCerrar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               FirebaseFirestore db = FirebaseFirestore.getInstance();
-               // Creo la referencia de la coleccion que quiero borrar
-               CollectionReference collectionReference = db.collection("anuncios");
-
-                // Crear una consulta para tener el documento que cumpla con el criterio
-               Query query = collectionReference.whereEqualTo("descripcion", descripcion);
-
-                // Ejecuto la consulta
-               query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                   @Override
-                   public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                       if (task.isSuccessful()) {
-
-                           for (QueryDocumentSnapshot document : task.getResult()) {
-
-                               document.getReference().delete();
-
-                           }
-                       } else {
-                           Log.w("TAG", "Error al obtener documentos", task.getException());
-                       }
-                       Intent i = new Intent(v.getContext(), MainActivity.class);
-                       v.getContext().startActivity(i);
-                   }
-               });
-
+               if (listener != null) {
+                   listener.onButtonClick(position, descripcion);
+               }
 
            }
        });
         holder.mBtnImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent();
+                Intent chooser = null;
+                i.setAction(Intent.ACTION_SEND);
+                i.setData(Uri.parse("mailto: "));
+                String[] para = {emailAnunciante};
+
+                i.putExtra(Intent.EXTRA_EMAIL, para);
+                i.putExtra(Intent.EXTRA_SUBJECT, "Referencia al anuncio: "+ mValues.get(position).getTitulo() );
+
+                chooser = i.createChooser(i,"enviar email");
+                v.getContext().startActivity(i);
 
             }
         });
