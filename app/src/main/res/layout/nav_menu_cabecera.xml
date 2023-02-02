@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     android:id="@+id/nav_cabecera"
     android:orientation="vertical"
-    android:background="@color/blueApp"
+    android:background="@drawable/side_nav_bar"
     >
 
     <ImageView
         android:id="@+id/imagenCabecera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/imcabecera" />
+        app:srcCompat="@drawable/imagencabecera" />
 
      <TextView
         android:id="@+id/nav_cabecera_bienvenido"
@@ -25,7 +25,6 @@
             android:id="@+id/nav_cabecera_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/navUser"
             android:padding="5dp">
         </TextView>
     <TextView

@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tech.placeholder.TablonActivity;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -111,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
          this.email = email;
          providerSession = provider;
 
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, TablonActivity.class);
         startActivity(i);
     }
 
